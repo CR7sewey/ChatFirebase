@@ -6,6 +6,7 @@ import androidx.navigation.NavGraph
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.chatfirebase.presentation.login.ui.LoginScreen
 
 sealed class Screen(val route: String) {
     object Login: Screen("login")
@@ -19,6 +20,7 @@ fun NavGraph(startDestination: String = Screen.Login.route) {
     NavHost(navController = navController, startDestination = startDestination) {
         composable(route = Screen.Login.route) {
             // Login Screen
+            LoginScreen(navController)
         }
 
         composable(route = Screen.Chat.route) {
