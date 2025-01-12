@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.chatfirebase.presentation.navigation.NavGraph
 import com.example.chatfirebase.ui.theme.ChatFirebaseTheme
 import com.google.firebase.Firebase
 import com.google.firebase.database.database
@@ -22,33 +23,14 @@ class MainActivity : ComponentActivity() {
             // https://firebase.google.com/docs/database/android/start?hl=pt
             val database = Firebase.database
             val myRef = database.getReference("message")
-            myRef.setValue("Hello world!")
 
 
             ChatFirebaseTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    NavGraph(          )
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ChatFirebaseTheme {
-        Greeting("Android")
-    }
-}
