@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 class LoginViewModel(private val context: Context) : ViewModel() {
 
     // to save info key:value
-    private val sharedPreferences: SharedPreferences = context.getSharedPreferences("login_prefs", Context.MODE_PRIVATE)
+    val sharedPreferences: SharedPreferences = context.getSharedPreferences("login_prefs", Context.MODE_PRIVATE)
 
     var userID: String = ""
     var username: String = ""
