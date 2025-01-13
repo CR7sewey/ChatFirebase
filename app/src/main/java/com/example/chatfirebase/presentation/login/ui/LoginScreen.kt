@@ -1,9 +1,11 @@
 package com.example.chatfirebase.presentation.login.ui
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -27,30 +29,37 @@ import com.example.chatfirebase.components.LoginUsername
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import com.example.chatfirebase.components.LoginPassword
+import com.example.chatfirebase.presentation.login.LoginViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(navHostController: NavHostController) {
-    LoginContent(navHostController)
+fun LoginScreen(navHostController: NavHostController, loginViewModel: LoginViewModel) {
+    LoginContent(navHostController, loginViewModel)
 }
 
 @Composable
-private fun LoginContent(navHostController: NavHostController, modifier: Modifier= Modifier) {
+private fun LoginContent(navHostController: NavHostController, loginViewModel: LoginViewModel ,modifier: Modifier= Modifier) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     //var text = ""
-    Column (modifier = modifier.fillMaxSize().padding(16.dp).verticalScroll(rememberScrollState()), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Bottom) {
+    Column (modifier = modifier.fillMaxSize().padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Bottom) {
         Text(
             text = "Login",
             fontSize = 24.sp,
             fontWeight = FontWeight.SemiBold,
             textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxSize().padding(bottom = 50.dp)
+            modifier = Modifier.fillMaxWidth().padding(bottom = 50.dp)
         )
         LoginUsername(placeholder = "Username", username, modifier = Modifier, onValueChange = { it: String -> username = it } )
         LoginPassword(placeholder = "Password", password, modifier = Modifier, onValueChange = { it: String -> password = it } )
         Spacer(modifier = modifier.padding(top = 26.dp))
-        Button(onClick = { navHostController.navigate(route = "chat")},
+        Button(onClick = {
+            if (username.isEmpty() || password.isEmpty()) {
+                return@Button
+            }
+            loginViewModel.saveCredentials(username,password)
+            navHostController.navigate(route = "chat")
+                         },
             shape = RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.primary,
