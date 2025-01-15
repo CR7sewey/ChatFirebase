@@ -35,8 +35,8 @@ class ChatViewModel(private val firebase: FirebaseDatabase, private val context:
             override fun onDataChange(snapshot: DataSnapshot) {
                 val messagesList = mutableListOf<Message>()
                 snapshot.children.forEach{ child ->
-                    val message = child.getValue(Message::class.java) ?: Message()
-                    message.let { it -> messagesList.add(it) }
+                    val message = child.getValue(Message::class.java)
+                    message?.let { it -> messagesList.add(it) }
                 }
                 _uiMessages.value = messagesList
             }

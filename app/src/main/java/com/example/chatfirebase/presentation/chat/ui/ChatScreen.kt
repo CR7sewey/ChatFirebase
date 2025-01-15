@@ -1,7 +1,9 @@
 package com.example.chatfirebase.presentation.chat.ui
 
 import android.util.Log
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
@@ -55,17 +58,17 @@ fun ChatScreenContent(chatMessages: List<Message>, chatViewModel: ChatViewModel,
                         Spacer(modifier = Modifier.weight(1f))
                     }
                     Box(
-                        modifier = modifier.align(Alignment.CenterVertically).padding(8.dp).background(
+                        modifier = modifier.align(Alignment.CenterVertically).padding(4.dp).background(
                             if (current.senderId == "1") {
                                 Color.Green
                             } else {
-                                Color.Red
+                                Color.Blue
                             }
                         ).padding(8.dp)
                     ) {
-                        current.text.let {
+                        current.text?.let {
                             Text(
-                                text = current.text ?: "",
+                                text = current.text,
                                 color = Color.White,
                                 fontWeight = FontWeight.SemiBold,
                                 fontSize = 24.sp
