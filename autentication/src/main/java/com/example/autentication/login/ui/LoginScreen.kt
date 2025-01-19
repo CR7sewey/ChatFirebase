@@ -1,4 +1,4 @@
-package com.example.chatfirebase.presentation.login.ui
+package com.example.autentication.login.ui
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
@@ -25,11 +25,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.chatfirebase.components.LoginUsername
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
-import com.example.chatfirebase.components.LoginPassword
-import com.example.chatfirebase.presentation.login.LoginViewModel
+import com.example.autentication.components.LoginPassword
+import com.example.autentication.components.LoginUsername
+import com.example.autentication.login.LoginViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

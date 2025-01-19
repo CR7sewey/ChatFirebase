@@ -6,11 +6,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.autentication.login.LoginViewModel
+import com.example.autentication.login.LoginViewModelFactory
+import com.example.autentication.login.ui.LoginScreen
 import com.example.chatfirebase.presentation.chat.ChatViewModel
 import com.example.chatfirebase.presentation.chat.ui.ChatScreen
-import com.example.chatfirebase.presentation.login.LoginViewModel
-import com.example.chatfirebase.presentation.login.LoginViewModelFactory
-import com.example.chatfirebase.presentation.login.ui.LoginScreen
 import com.google.firebase.FirebaseApp
 import com.google.firebase.database.FirebaseDatabase
 
